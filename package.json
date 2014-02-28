@@ -1,0 +1,27 @@
+{
+  "name": "sass-css-stream",
+  "version": "0.0.1",
+  "description": "sass to css transform",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rotundasoftware/sass-css-stream.git"
+  },
+  "keywords": [
+    "cartero",
+    "sass",
+    "css"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rotundasoftware/sass-css-stream/issues"
+  },
+  "homepage": "https://github.com/rotundasoftware/sass-css-stream",
+  "dependencies": {
+    "node-sass": "~0.8.1",
+    "through": "~2.3.4"
+  }
+}
