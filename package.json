@@ -1,10 +1,9 @@
 {
   "name": "sass-css-stream",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "sass to css transform",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/rotundasoftware/sass-css-stream.git"
