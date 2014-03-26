@@ -2,7 +2,7 @@ var through = require( "through" );
 var sass = require( "node-sass" );
 var path = require( "path" );
 
-module.exports = function( file ) {
+module.exports = function( file, opts ) {
 	var data = "";
 	if( file !== undefined && path.extname( file ) !== ".scss" )
 		return through();
@@ -14,7 +14,7 @@ module.exports = function( file ) {
 	}
 
 	function end() {
-		this.queue( sass.renderSync( data ) );
+		this.queue( sass.renderSync( data, opts ) );
 		this.queue( null );
 	}
 };
