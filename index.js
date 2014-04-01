@@ -14,7 +14,12 @@ module.exports = function( file, opts ) {
 	}
 
 	function end() {
-		this.queue( sass.renderSync( data, opts ) );
+		try {
+			this.queue( sass.renderSync( data, opts ) );
+		} catch( err ) {
+			this.emit( 'error', new Error( err ) );
+		}
+
 		this.queue( null );
 	}
 };
