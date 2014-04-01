@@ -1,9 +1,11 @@
 sass-css-stream
 ===============
 
-A sass to css stream wrapper around [node-sass](https://github.com/andrew/node-sass).  Returns a [through stream](https://github.com/dominictarr/through) that has sass contents written in and outputs the compiled css.
+A sass to css stream wrapper around [node-sass](https://github.com/andrew/node-sass).
 
-Can be used as a sass to css transform for [parcelify](https://github.com/rotundasoftware/parcelify).
+Takes a file argument and an optional opts argument that is passed through to node-sass. Returns a [through stream](https://github.com/dominictarr/through) that has sass contents written in and outputs the compiled css.
+
+Can be as a [parcelify](https://github.com/rotundasoftware/parcelify) or [cartero](https://github.com/rotundasoftware/cartero) transform.
 
 #example
 ```javascript
@@ -13,7 +15,9 @@ var path = require( 'path' );
 
 var inputFile = path.join( __dirname, "sampleStyle.scss" );
 
-fs.createReadStream( inputFile ).pipe( sassCssStream( inputFile) ).pipe( process.stdout );
+var opts = { includePaths : [ path.resolve( __dirname, 'bourbon' ) ] };
+
+fs.createReadStream( inputFile ).pipe( sassCssStream( inputFile, opts ) ).pipe( process.stdout );
 ```
 
 #usage
