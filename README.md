@@ -24,6 +24,6 @@ fs.createReadStream( inputFile ).pipe( sassCssStream( inputFile, opts ) ).pipe( 
 
 ### sassCssStream( file [, opts ] )
 
-`file` - the sass file being 
+`file` - the sass file to transform
 
 `opts` - optional options hash passed through to `node-sass.renderSync`
