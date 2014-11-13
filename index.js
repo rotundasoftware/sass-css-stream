@@ -15,6 +15,8 @@ module.exports = function( file, opts ) {
 
 	function end() {
 		try {
+			opts = opts ? opts : {};
+			opts.includePaths = [path.dirname(file)];
 			this.queue( sass.renderSync( data, opts ) );
 		} catch( err ) {
 			this.emit( 'error', new Error( err ) );
