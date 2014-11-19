@@ -16,7 +16,11 @@ module.exports = function( file, opts ) {
 	function end() {
 		try {
 			opts = opts ? opts : {};
-			opts.includePaths = [path.dirname(file)];
+			var includePaths = opts.includePaths;
+			var pathToAdd = [path.dirname(file)];
+			opts.includePaths = Array.isArray(includePaths) ?
+			                    includePaths.concat(pathToAdd) :
+			                    pathToAdd;
 			this.queue( sass.renderSync( data, opts ) );
 		} catch( err ) {
 			this.emit( 'error', new Error( err ) );
