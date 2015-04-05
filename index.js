@@ -6,8 +6,9 @@ module.exports = function( file, opts ) {
 	var data = "";
 	if( file !== undefined && path.extname( file ) !== ".scss" )
 		return through();
-	else
+	else {
 		return through( write, end );
+	}
 
 	function write(buf) {
 		data += buf;
@@ -15,13 +16,21 @@ module.exports = function( file, opts ) {
 
 	function end() {
 		try {
-			opts = opts ? opts : {};
-			var includePaths = opts.includePaths;
-			var pathToAdd = [path.dirname(file)];
-			opts.includePaths = Array.isArray(includePaths) ?
-			                    includePaths.concat(pathToAdd) :
+			var sassOpts = {};
+
+			sassOpts.data = data;
+
+			var pathToAdd = [ path.dirname( file ) ];
+			sassOpts.includePaths = Array.isArray( opts && opts.includePaths ) ?
+			                    opts.includePaths.concat( pathToAdd ) :
 			                    pathToAdd;
-			this.queue( sass.renderSync( data, opts ) );
+
+			var result = sass.renderSync( sassOpts );
+			if( result instanceof Error ) {
+				throw result;
+			}
+
+			this.queue( result.css );
 		} catch( err ) {
 			this.emit( 'error', new Error( err ) );
 		}
